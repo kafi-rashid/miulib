@@ -35,23 +35,24 @@ public class MemberListUI extends JPanel {
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("List of Members");
-		lblNewLabel.setBounds(27, 24, 301, 22);
-		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel.setFont(new Font("Poppins", Font.PLAIN, 20));
+		lblNewLabel.setBounds(26, 20, 400, 40);
 		add(lblNewLabel);
 		
 		JButton btnAddMember = new JButton("+ Add Member");
+		btnAddMember.setFont(new Font("Poppins", Font.PLAIN, 13));
 		btnAddMember.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainUI.LoadUI(new AddMemberUI());
 			}
 		});
 		btnAddMember.setBackground(new Color(72, 61, 139));
-		btnAddMember.setBounds(527, 18, 148, 40);
+		btnAddMember.setBounds(26, 520, 170, 40);
 		add(btnAddMember);
 					
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(27, 79, 648, 415);
+		scrollPane.setBounds(27, 79, 640, 429);
 		add(scrollPane);
 		
 

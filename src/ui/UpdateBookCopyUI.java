@@ -33,10 +33,10 @@ public class UpdateBookCopyUI extends JPanel {
     public UpdateBookCopyUI() {
         setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("Update Copies of book");
+        JLabel lblNewLabel = new JLabel("Update Copies of Book");
         lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-        lblNewLabel.setBounds(26, 10, 370, 32);
+        lblNewLabel.setFont(new Font("Poppins", Font.PLAIN, 20));
+        lblNewLabel.setBounds(26, 20, 370, 40);
         add(lblNewLabel);
 
         var books = controller.getBooks();
@@ -68,20 +68,23 @@ public class UpdateBookCopyUI extends JPanel {
 			}
         });
         tblBookList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tblBookList.setBounds(26, 54, 664, 312);
+        tblBookList.setBounds(26, 75, 640, 312);
 
         add(tblBookList);
         
         txtAvailableCopies = new JTextField();
-        txtAvailableCopies.setBounds(512, 381, 179, 26);
+        txtAvailableCopies.setFont(new Font("Poppins", Font.PLAIN, 13));
+        txtAvailableCopies.setBounds(144, 420, 82, 40);
         add(txtAvailableCopies);
         txtAvailableCopies.setColumns(10);
         
-        JLabel lblNewLabel_2 = new JLabel("Available copies");
-        lblNewLabel_2.setBounds(365, 386, 135, 16);
+        JLabel lblNewLabel_2 = new JLabel("Available copies:");
+        lblNewLabel_2.setFont(new Font("Poppins", Font.PLAIN, 13));
+        lblNewLabel_2.setBounds(26, 420, 135, 40);
         add(lblNewLabel_2);
         
-        btnUpdateCopies = new JButton("Update copies");
+        btnUpdateCopies = new JButton("Update Copies");
+        btnUpdateCopies.setFont(new Font("Poppins", Font.PLAIN, 13));
         btnUpdateCopies.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
                 var msg = controller.updateBookCopies(tblBookList.getSelectedRow(), txtAvailableCopies.getText());
@@ -89,7 +92,7 @@ public class UpdateBookCopyUI extends JPanel {
                 MainUI.LoadUI(new UpdateBookCopyUI());
         	}
         });
-        btnUpdateCopies.setBounds(522, 419, 168, 42);
+        btnUpdateCopies.setBounds(238, 421, 153, 40);
         add(btnUpdateCopies);
     }
 

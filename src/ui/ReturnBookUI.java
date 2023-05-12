@@ -34,8 +34,8 @@ public class ReturnBookUI extends JPanel {
 
         JLabel lblNewLabel = new JLabel("Return Book");
         lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-        lblNewLabel.setBounds(26, 10, 125, 32);
+        lblNewLabel.setFont(new Font("Poppins", Font.PLAIN, 20));
+        lblNewLabel.setBounds(26, 20, 400, 40);
         add(lblNewLabel);
 
         var books = controller.getCheckoutBooks();
@@ -53,11 +53,12 @@ public class ReturnBookUI extends JPanel {
         }
         String[] columnNames = {"Book Title", "ISBN", "Author", "Member ID", "Member Name"};
         tblBookList = new JTable(data, columnNames);
-        tblBookList.setBounds(26, 54, 664, 362);
+        tblBookList.setBounds(26, 75, 640, 362);
 
         add(tblBookList);
         
         JButton btnReturnBook = new JButton("Return Book");
+        btnReturnBook.setFont(new Font("Poppins", Font.PLAIN, 13));
         btnReturnBook.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		var selectedRow = tblBookList.getSelectedRow();
@@ -68,7 +69,7 @@ public class ReturnBookUI extends JPanel {
                 controller.returnBook(selectedRow);
         	}
         });
-        btnReturnBook.setBounds(498, 438, 194, 82);
+        btnReturnBook.setBounds(26, 458, 139, 40);
         add(btnReturnBook);
 	}
 }

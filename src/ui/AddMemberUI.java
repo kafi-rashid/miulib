@@ -5,6 +5,8 @@ import data.Address;
 import data.Member;
 
 import javax.swing.*;
+
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
@@ -25,56 +27,62 @@ public class AddMemberUI extends JPanel {
 		setLayout(null);
 
 		txtFirstName = new JTextField();
-		txtFirstName.setBounds(17, 109, 664, 37);
+		txtFirstName.setBounds(26, 115, 402, 37);
 		add(txtFirstName);
 		txtFirstName.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("First Name");
-		lblNewLabel.setBounds(28, 87, 91, 16);
-		add(lblNewLabel);
-
 		JLabel lblNewLabel_1 = new JLabel("Add New Member");
-		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(17, 6, 676, 37);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_1.setFont(new Font("Poppins", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(26, 20, 400, 40);
 		add(lblNewLabel_1);
+		
+		JLabel lblNewLabel = new JLabel("First Name");
+		lblNewLabel.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblNewLabel.setBounds(26, 75, 400, 40);
+		add(lblNewLabel);
 
 		txtLastName = new JTextField();
 		txtLastName.setColumns(10);
-		txtLastName.setBounds(17, 180, 664, 37);
+		txtLastName.setBounds(26, 186, 400, 40);
 		add(txtLastName);
 
 		JLabel lblLastName = new JLabel("Last Name");
-		lblLastName.setBounds(28, 158, 91, 16);
+		lblLastName.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblLastName.setBounds(26, 158, 400, 40);
 		add(lblLastName);
 
 		JLabel lblPhoneNumber = new JLabel("Phone Number");
-		lblPhoneNumber.setBounds(28, 229, 234, 16);
+		lblPhoneNumber.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblPhoneNumber.setBounds(26, 229, 400, 40);
 		add(lblPhoneNumber);
 
 		txtPhone = new JTextField();
 		txtPhone.setColumns(10);
-		txtPhone.setBounds(17, 251, 664, 37);
+		txtPhone.setBounds(26, 257, 400, 40);
 		add(txtPhone);
 
 		JLabel lblPhoneNumber_1 = new JLabel("Address");
-		lblPhoneNumber_1.setBounds(28, 307, 234, 16);
+		lblPhoneNumber_1.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblPhoneNumber_1.setBounds(26, 307, 400, 40);
 		add(lblPhoneNumber_1);
 
 		JComboBox cmbAddress = new JComboBox();
-		cmbAddress.setBounds(17, 335, 554, 27);
+		cmbAddress.setBounds(26, 335, 400, 40);
+		cmbAddress.setPreferredSize(new Dimension(cmbAddress.getPreferredSize().width, 40));
 
 		for(Address a: systemController.getAddresses()){
 			cmbAddress.addItem(a.toString());
 		}
 		add(cmbAddress);
 
-		JButton btnAddAddress = new JButton("New Address");
+		JButton btnAddAddress = new JButton("+ New Address");
 		btnAddAddress.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NewAddressUI.showUI(AddMemberUI.this);
 			}
 		});
-		btnAddAddress.setBounds(572, 334, 117, 29);
+		btnAddAddress.setBounds(438, 335, 159, 40);
 		add(btnAddAddress);
 
 		JButton btnAddMember = new JButton("Add Member");
@@ -85,7 +93,7 @@ public class AddMemberUI extends JPanel {
 				MainUI.LoadUI(new AddMemberUI());
 			}
 		});
-		btnAddMember.setBounds(475, 479, 200, 50);
+		btnAddMember.setBounds(280, 387, 141, 40);
 		add(btnAddMember);
 
 	}

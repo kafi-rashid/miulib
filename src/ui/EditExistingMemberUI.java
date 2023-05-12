@@ -27,60 +27,67 @@ public class EditExistingMemberUI extends JPanel {
 		setBackground(SystemColor.window);
 		setLayout(null);
 
+		JLabel lblNewLabel_1 = new JLabel("Edit Member");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_1.setFont(new Font("Poppins", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(26, 20, 400, 40);
+		add(lblNewLabel_1);
+		
 		txtFirstName = new JTextField();
-		txtFirstName.setBounds(17, 151, 651, 37);
+		txtFirstName.setBounds(26, 179, 400, 40);
 		add(txtFirstName);
 		txtFirstName.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("First Name");
-		lblNewLabel.setBounds(28, 129, 91, 16);
+		lblNewLabel.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblNewLabel.setBounds(26, 145, 400, 40);
 		add(lblNewLabel);
-
-		JLabel lblNewLabel_1 = new JLabel("Edit Member");
-		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(17, 6, 630, 37);
-		add(lblNewLabel_1);
 
 		txtLastName = new JTextField();
 		txtLastName.setColumns(10);
-		txtLastName.setBounds(17, 222, 651, 37);
+		txtLastName.setBounds(26, 259, 400, 40);
 		add(txtLastName);
 
 		JLabel lblLastName = new JLabel("Last Name");
-		lblLastName.setBounds(28, 200, 91, 16);
+		lblLastName.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblLastName.setBounds(26, 221, 400, 40);
 		add(lblLastName);
 
 		JLabel lblPhoneNumber = new JLabel("Phone Number");
-		lblPhoneNumber.setBounds(28, 271, 234, 16);
+		lblPhoneNumber.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblPhoneNumber.setBounds(26, 299, 400, 40);
 		add(lblPhoneNumber);
 
 		txtPhone = new JTextField();
 		txtPhone.setColumns(10);
-		txtPhone.setBounds(17, 293, 651, 37);
+		txtPhone.setBounds(26, 330, 400, 40);
 		add(txtPhone);
 
 		JLabel lblPhoneNumber_1 = new JLabel("Address");
-		lblPhoneNumber_1.setBounds(28, 349, 234, 16);
+		lblPhoneNumber_1.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblPhoneNumber_1.setBounds(26, 368, 400, 40);
 		add(lblPhoneNumber_1);
 
 		JComboBox cmbAddress = new JComboBox();
-		cmbAddress.setBounds(17, 377, 514, 27);
+		cmbAddress.setBounds(26, 409, 400, 40);
 
 		for(Address a: controller.getAddresses()){
 			cmbAddress.addItem(a.toString());
 		}
 		add(cmbAddress);
 
-		JButton btnAddAddress = new JButton("New Address");
+		JButton btnAddAddress = new JButton("+ New Address");
+		btnAddAddress.setFont(new Font("Poppins", Font.PLAIN, 13));
 		btnAddAddress.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NewAddressUI.showUI(EditExistingMemberUI.this);
 			}
 		});
-		btnAddAddress.setBounds(551, 376, 117, 29);
+		btnAddAddress.setBounds(438, 410, 153, 40);
 		add(btnAddAddress);
 
-		JButton btnAddMember = new JButton("Edit Member");
+		JButton btnAddMember = new JButton("Save Member");
+		btnAddMember.setFont(new Font("Poppins", Font.PLAIN, 13));
 		btnAddMember.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.editMember(selectedMember, txtFirstName.getText(), txtLastName.getText(), txtPhone.getText(), cmbAddress.getSelectedIndex());
@@ -88,7 +95,7 @@ public class EditExistingMemberUI extends JPanel {
 				MainUI.LoadUI(new EditExistingMemberUI());
 			}
 		});
-		btnAddMember.setBounds(460, 467, 200, 50);
+		btnAddMember.setBounds(249, 469, 177, 40);
 		add(btnAddMember);
 		
 		JComboBox cmbMembers = new JComboBox();
@@ -101,11 +108,16 @@ public class EditExistingMemberUI extends JPanel {
 				cmbAddress.setSelectedItem(controller.getAddressIndex(selectedMember.getAddress()));
 			}
 		});
-		cmbMembers.setBounds(17, 67, 641, 27);
+		cmbMembers.setBounds(26, 108, 400, 40);
 		for(Member member: controller.getMembers()){
 			cmbMembers.addItem(member.getFirstName());
 		}
 		add(cmbMembers);
+		
+		JLabel lblNewLabel_2 = new JLabel("Select Member");
+		lblNewLabel_2.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblNewLabel_2.setBounds(26, 75, 400, 40);
+		add(lblNewLabel_2);
 
 	}
 

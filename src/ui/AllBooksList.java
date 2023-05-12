@@ -24,10 +24,10 @@ public class AllBooksList extends JPanel {
 	public AllBooksList() {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Book List");
+		JLabel lblNewLabel = new JLabel("List of Books");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel.setBounds(26, 10, 125, 32);
+		lblNewLabel.setFont(new Font("Poppins", Font.PLAIN, 20));
+		lblNewLabel.setBounds(26, 20, 200, 40);
 		add(lblNewLabel);
 
 		var books = controller.getBooks();
@@ -45,7 +45,7 @@ public class AllBooksList extends JPanel {
 		}
 	        String[] columnNames = { "Book ID", "Title", "ISBN","Authors", "Availability" };
 	        tblBookList = new JTable(data,columnNames); 
-		tblBookList.setBounds(26, 75, 664, 409);
+		tblBookList.setBounds(26, 75, 640, 409);
 		
 		
 		add(tblBookList);

@@ -28,21 +28,26 @@ public class CheckoutBookUI extends JPanel {
         setBackground(SystemColor.window);
         setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("Select book to checkout");
-        lblNewLabel.setBounds(17, 87, 178, 16);
-        add(lblNewLabel);
 
-        JLabel lblNewLabel_1 = new JLabel("Book Checkout");
-        lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        lblNewLabel_1.setBounds(17, 6, 676, 37);
+        JLabel lblNewLabel_1 = new JLabel("Checkout a Book");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_1.setFont(new Font("Poppins", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(26, 20, 400, 40);
         add(lblNewLabel_1);
 
-        JLabel lblLastName = new JLabel("Select a Member");
-        lblLastName.setBounds(17, 158, 122, 16);
+        JLabel lblNewLabel = new JLabel("Select book to checkout or enter ISBN and press enter");
+        lblNewLabel.setFont(new Font("Poppins", Font.PLAIN, 13));
+        lblNewLabel.setBounds(26, 75, 365, 40);
+        add(lblNewLabel);
+        
+        JLabel lblLastName = new JLabel("Select a Member or enter Member ID and press enter");
+        lblLastName.setFont(new Font("Poppins", Font.PLAIN, 13));
+        lblLastName.setBounds(26, 188, 365, 40);
         add(lblLastName);
 
         lblCheckoutDaysInfo = new JLabel("Maximum checkout days");
-        lblCheckoutDaysInfo.setBounds(16, 229, 286, 16);
+        lblCheckoutDaysInfo.setFont(new Font("Poppins", Font.PLAIN, 13));
+        lblCheckoutDaysInfo.setBounds(26, 292, 286, 40);
         add(lblCheckoutDaysInfo);
 
         JComboBox cmbBookList = new JComboBox();
@@ -52,20 +57,21 @@ public class CheckoutBookUI extends JPanel {
                 lblCheckoutDaysInfo.setText("Maximum checkout days: " + book.maxCheckoutDays);
             }
         });
-        cmbBookList.setBounds(6, 109, 544, 37);
+        cmbBookList.setBounds(26, 128, 497, 40);
         for (Book book : controller.getBooks()) {
             cmbBookList.addItem(book.toString());
         }
         add(cmbBookList);
 
         JComboBox cmbMemberList = new JComboBox();
-        cmbMemberList.setBounds(6, 180, 544, 37);
+        cmbMemberList.setBounds(26, 240, 497, 40);
         for (Member member : controller.getMembers()) {
             cmbMemberList.addItem(member.getFirstName());
         }
         add(cmbMemberList);
 
         JButton btnCheckoutBook = new JButton("Checkout Book");
+        btnCheckoutBook.setFont(new Font("Poppins", Font.PLAIN, 13));
         btnCheckoutBook.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 var result = controller.checkoutBook(cmbBookList.getSelectedIndex(), cmbMemberList.getSelectedIndex());
@@ -76,7 +82,7 @@ public class CheckoutBookUI extends JPanel {
                 }
             }
         });
-        btnCheckoutBook.setBounds(332, 272, 218, 75);
+        btnCheckoutBook.setBounds(26, 348, 178, 40);
         add(btnCheckoutBook);
 
         txtMemberId = new JTextField();
@@ -93,7 +99,7 @@ public class CheckoutBookUI extends JPanel {
                 }
             }
         });
-        txtMemberId.setBounds(134, 153, 130, 26);
+        txtMemberId.setBounds(393, 187, 130, 40);
         add(txtMemberId);
         txtMemberId.setColumns(10);
 
@@ -111,16 +117,8 @@ public class CheckoutBookUI extends JPanel {
                 }
         	}
         });
-        txtBookId.setBounds(186, 82, 130, 26);
+        txtBookId.setBounds(393, 74, 130, 40);
         add(txtBookId);
         txtBookId.setColumns(10);
-
-        JLabel lblNewLabel_2 = new JLabel("(press enter)");
-        lblNewLabel_2.setBounds(317, 87, 116, 16);
-        add(lblNewLabel_2);
-
-        JLabel lblNewLabel_2_1 = new JLabel("(press enter)");
-        lblNewLabel_2_1.setBounds(265, 158, 116, 16);
-        add(lblNewLabel_2_1);
     }
 }

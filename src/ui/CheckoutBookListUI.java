@@ -26,10 +26,10 @@ public class CheckoutBookListUI extends JPanel {
     public CheckoutBookListUI() {
         setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("View Checkouts");
+        JLabel lblNewLabel = new JLabel("View Checkout History");
         lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-        lblNewLabel.setBounds(26, 10, 185, 32);
+        lblNewLabel.setFont(new Font("Poppins", Font.PLAIN, 20));
+        lblNewLabel.setBounds(26, 20, 462, 40);
         add(lblNewLabel);
 
         var books = controller.getCheckoutBooks();
@@ -50,7 +50,7 @@ public class CheckoutBookListUI extends JPanel {
         tblBookList = new JTable(data, columnNames);
         tblBookList.setFillsViewportHeight(true);
         tblBookList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tblBookList.setBounds(26, 54, 616, 431);
+        tblBookList.setBounds(26, 75, 640, 431);
 
         add(tblBookList);
 

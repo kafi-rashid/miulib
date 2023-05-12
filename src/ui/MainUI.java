@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import java.awt.CardLayout;
@@ -36,8 +38,9 @@ public class MainUI extends JFrame {
     private static MainUI frame;
     private JPanel titlePanel;
     private JPanel btnPanel;
-    private JButton btnLogOut;
-
+//    private JButton btnLogOut;
+    private JLabel btnLogOut;
+    private JLabel lblNewLabel;
 
     public static void showUI() {
         if (MainUI.frame == null) {
@@ -58,14 +61,14 @@ public class MainUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1000, 620);
         contentPane = new JPanel();
-        contentPane.setBackground(Color.DARK_GRAY);
+        contentPane.setBackground(new Color(255, 255, 255));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(51, 51, 51));
+        panel.setBackground(Color.WHITE);
         panel.setBounds(6, 6, 285, 580);
         contentPane.add(panel);
 
@@ -77,134 +80,171 @@ public class MainUI extends JFrame {
         panel.setLayout(null);
 
         titlePanel = new JPanel();
-        titlePanel.setBackground(Color.DARK_GRAY);
-        titlePanel.setBounds(0, 0, 285, 83);
+        titlePanel.setBackground(new Color(255, 255, 255));
+        titlePanel.setBounds(0, 0, 285, 129);
         panel.add(titlePanel);
         titlePanel.setLayout(null);
 
         JLabel lblLoginInfo = new JLabel(getLoginDetails());
-        lblLoginInfo.setBounds(6, 47, 273, 20);
+        lblLoginInfo.setBounds(18, 47, 261, 20);
         titlePanel.add(lblLoginInfo);
-        lblLoginInfo.setForeground(UIManager.getColor("CheckBox.background"));
-        lblLoginInfo.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-        lblLoginInfo.setHorizontalAlignment(SwingConstants.CENTER);
+        lblLoginInfo.setForeground(Color.BLACK);
+        lblLoginInfo.setFont(new Font("Poppins", Font.PLAIN, 24));
+        lblLoginInfo.setHorizontalAlignment(SwingConstants.LEFT);
+        
 
-        btnLogOut = new JButton("Log out");
-        btnLogOut.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                systemController.logOut();
+        JLabel lblLoginDesignation = new JLabel(getDesignation());
+        lblLoginDesignation.setBounds(18, 69, 261, 20);
+        titlePanel.add(lblLoginDesignation);
+        lblLoginDesignation.setForeground(Color.BLACK);
+        lblLoginDesignation.setFont(new Font("Poppins", Font.ITALIC, 13));
+        lblLoginDesignation.setHorizontalAlignment(SwingConstants.LEFT);
+        
+        lblNewLabel = new JLabel("Welcome");
+        lblNewLabel.setFont(new Font("Poppins", Font.PLAIN, 13));
+        lblNewLabel.setForeground(Color.BLACK);
+        lblNewLabel.setBounds(18, 20, 61, 16);
+        titlePanel.add(lblNewLabel);
+        
+        btnLogOut = new JLabel("Log Out");
+        btnLogOut.setForeground(Color.GRAY);
+        btnLogOut.setFont(new Font("Poppins", Font.PLAIN, 12));
+        btnLogOut.setBounds(18, 95, 61, 16);
+        btnLogOut.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	systemController.logOut();
                 hideUI();
                 LoginUI.showUI();
             }
         });
-        btnLogOut.setBounds(187, 6, 92, 29);
-        btnLogOut.setForeground(Color.RED);
-        btnLogOut.setBackground(Color.WHITE);
+        
         titlePanel.add(btnLogOut);
 
         btnPanel = new JPanel();
-        btnPanel.setBounds(0, 86, 285, 494);
+        btnPanel.setBackground(Color.WHITE);
+        btnPanel.setBounds(0, 128, 285, 452);
         panel.add(btnPanel);
         btnPanel.setLayout(new GridLayout(0, 1, 0, 0));
 
-        btnNewMember = new JButton("Add new member");
+        btnNewMember = new JButton(">  Add Member");
+        btnNewMember.setFont(new Font("Poppins", Font.PLAIN, 13));
+        btnNewMember.setHorizontalAlignment(SwingConstants.LEFT);
         btnPanel.add(btnNewMember);
         btnNewMember.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 LoadUI(new AddMemberUI());
             }
         });
-        btnNewMember.setBackground(UIManager.getColor("CheckBox.background"));
+        btnNewMember.setBackground(Color.WHITE);
         btnNewMember.setOpaque(true);
 
-        btnEditMember = new JButton("Edit existing member");
+        btnEditMember = new JButton(">  Update Member");
+        btnEditMember.setFont(new Font("Poppins", Font.PLAIN, 13));
+        btnEditMember.setHorizontalAlignment(SwingConstants.LEFT);
         btnEditMember.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		LoadUI(new EditExistingMemberUI());
         	}
         });
         btnPanel.add(btnEditMember);
-        btnEditMember.setBackground(UIManager.getColor("CheckBox.background"));
+        btnEditMember.setBackground(Color.WHITE);
         btnEditMember.setOpaque(true);
 
-        btnViewMembers = new JButton("View All Members");
+        btnViewMembers = new JButton(">  List Members");
+        btnViewMembers.setFont(new Font("Poppins", Font.PLAIN, 13));
+        btnViewMembers.setHorizontalAlignment(SwingConstants.LEFT);
         btnPanel.add(btnViewMembers);
         btnViewMembers.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 LoadUI(new MemberListUI());
             }
         });
-        btnViewMembers.setBackground(UIManager.getColor("CheckBox.background"));
+        btnViewMembers.setBackground(Color.WHITE);
         btnViewMembers.setOpaque(true);
 
-        btnAddAuthor = new JButton("Add New Author");
+        btnAddAuthor = new JButton(">  Add Author");
+        btnAddAuthor.setFont(new Font("Poppins", Font.PLAIN, 13));
+        btnAddAuthor.setHorizontalAlignment(SwingConstants.LEFT);
         btnPanel.add(btnAddAuthor);
         btnAddAuthor.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 LoadUI(new AddAuthorUI());
             }
         });
-        btnAddAuthor.setBackground(UIManager.getColor("CheckBox.background"));
+        btnAddAuthor.setBackground(Color.WHITE);
         btnAddAuthor.setOpaque(true);
 
-        btnAddBook = new JButton("Add New Book");
+        btnAddBook = new JButton(">  Add Book");
+        btnAddBook.setFont(new Font("Poppins", Font.PLAIN, 13));
+        btnAddBook.setHorizontalAlignment(SwingConstants.LEFT);
         btnPanel.add(btnAddBook);
         btnAddBook.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 LoadUI(new AddBookUI());
             }
         });
-        btnAddBook.setBackground(UIManager.getColor("CheckBox.background"));
+        btnAddBook.setBackground(Color.WHITE);
         btnAddBook.setOpaque(true);
 
-        btnBookList = new JButton("All Books");
+        btnBookList = new JButton(">  List Books");
+        btnBookList.setFont(new Font("Poppins", Font.PLAIN, 13));
+        btnBookList.setHorizontalAlignment(SwingConstants.LEFT);
         btnPanel.add(btnBookList);
         btnBookList.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 LoadUI(new AllBooksList());
             }
         });
-        btnBookList.setBackground(UIManager.getColor("CheckBox.background"));
+        btnBookList.setBackground(Color.WHITE);
         btnBookList.setOpaque(true);
 
-        btnCheckoutBook = new JButton("Checkout Book");
+        btnCheckoutBook = new JButton(">  Checkout a Book");
+        btnCheckoutBook.setFont(new Font("Poppins", Font.PLAIN, 13));
+        btnCheckoutBook.setHorizontalAlignment(SwingConstants.LEFT);
         btnCheckoutBook.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		LoadUI(new CheckoutBookUI());
         	}
         });
         btnPanel.add(btnCheckoutBook);
-        btnCheckoutBook.setBackground(UIManager.getColor("CheckBox.background"));
+        btnCheckoutBook.setBackground(Color.WHITE);
         btnCheckoutBook.setOpaque(true);
 
-        btnReturnBook = new JButton("Return Book");
+        btnReturnBook = new JButton(">  Return a Book");
+        btnReturnBook.setFont(new Font("Poppins", Font.PLAIN, 13));
+        btnReturnBook.setHorizontalAlignment(SwingConstants.LEFT);
         btnReturnBook.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		LoadUI(new ReturnBookUI());
         	}
         });
         btnPanel.add(btnReturnBook);
-        btnReturnBook.setBackground(UIManager.getColor("CheckBox.background"));
+        btnReturnBook.setBackground(Color.WHITE);
         btnReturnBook.setOpaque(true);
 
-        btnViewCheckouts = new JButton("View Checkouts");
+        btnViewCheckouts = new JButton(">  View Checkout History");
+        btnViewCheckouts.setFont(new Font("Poppins", Font.PLAIN, 13));
+        btnViewCheckouts.setHorizontalAlignment(SwingConstants.LEFT);
         btnViewCheckouts.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		LoadUI(new CheckoutBookListUI());
         	}
         });
         btnPanel.add(btnViewCheckouts);
-        btnViewCheckouts.setBackground(UIManager.getColor("CheckBox.background"));
+        btnViewCheckouts.setBackground(Color.WHITE);
         btnViewCheckouts.setOpaque(true);
 
-        btnUpdateBookCopy = new JButton("Update Book Copy");
+        btnUpdateBookCopy = new JButton(">  Update Book Copy");
+        btnUpdateBookCopy.setFont(new Font("Poppins", Font.PLAIN, 13));
+        btnUpdateBookCopy.setHorizontalAlignment(SwingConstants.LEFT);
         btnUpdateBookCopy.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		LoadUI(new UpdateBookCopyUI());
         	}
         });
         btnPanel.add(btnUpdateBookCopy);
-        btnUpdateBookCopy.setBackground(UIManager.getColor("CheckBox.background"));
+        btnUpdateBookCopy.setBackground(Color.WHITE);
         btnUpdateBookCopy.setOpaque(true);
 
         //enable buttons based on roles
@@ -215,9 +255,19 @@ public class MainUI extends JFrame {
     private String getLoginDetails() {
         var user = this.systemController.getLoggedInUser();
         if (user == null) {
-            return "Login first!";
+            return "...";
         }
-        var str = user.firstName + " - " + user.role.toString();
+        var str = user.firstName;
+
+        return str;
+    }
+
+    private String getDesignation() {
+        var user = this.systemController.getLoggedInUser();
+        if (user == null) {
+            return "...";
+        }
+        var str = "Logged in as " + user.role.toString();
 
         return str;
     }

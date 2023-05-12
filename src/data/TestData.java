@@ -8,15 +8,9 @@ public class TestData {
 
     public static List<User> getTestUsers(){
         var tmpUsers = new ArrayList<User>();
-        tmpUsers.add(new User("james" ,"abc123", "James", "Torantneeno", UserRoles.Admin));
-        tmpUsers.add(new User("pj" ,"abc123", "Pasindu", "J", UserRoles.Both));
-        tmpUsers.add(new User("ponchanon" ,"abc123", "Ponchanon", "Rone", UserRoles.Both));
-        tmpUsers.add(new User("lib1" ,"abc123", "Library", "01", UserRoles.Librarian));
-        tmpUsers.add(new User("lib2" ,"abc123", "Library", "02", UserRoles.Librarian));
-        tmpUsers.add(new User("iqbal" ,"abc123", "Md", "Iqbal", UserRoles.Librarian));
-        tmpUsers.add(new User("kafi" ,"abc123", "Kafi", "Gordan", UserRoles.Librarian));
-        tmpUsers.add(new User("joanna" ,"abc123", "Joanna", "Saleem", UserRoles.Both));
-
+        tmpUsers.add(new User("", "", "Moynul Islam", "1111", UserRoles.Admin));
+        tmpUsers.add(new User("reza" ,"123", "Rezaul Karim Khan", "2222", UserRoles.Both));
+        tmpUsers.add(new User("kafi" ,"123", "Saidul Islam", "3333", UserRoles.Librarian));
         return tmpUsers;
     }
 

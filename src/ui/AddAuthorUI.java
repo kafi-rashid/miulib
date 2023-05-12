@@ -23,27 +23,30 @@ public class AddAuthorUI extends JPanel {
 	public AddAuthorUI() {
 		setLayout(null);
 
+		JLabel lblNewLabel = new JLabel("Add Author");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel.setFont(new Font("Poppins", Font.PLAIN, 20));
+		lblNewLabel.setBounds(26, 20, 400, 40);
+		add(lblNewLabel);
+		
 		JLabel lblNewLabel_1 = new JLabel("First Name");
-		lblNewLabel_1.setBounds(27, 79, 126, 16);
+		lblNewLabel_1.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblNewLabel_1.setBounds(26, 75, 400, 40);
 		add(lblNewLabel_1);
 
-		JLabel lblNewLabel = new JLabel("Add Author");
-		lblNewLabel.setBounds(27, 24, 99, 22);
-		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		add(lblNewLabel);
 
 		JComboBox cmbAddress = new JComboBox();
-		cmbAddress.setBounds(27, 349, 400, 27);
+		cmbAddress.setBounds(26, 332, 400, 40);
 		add(cmbAddress);
 
-		JButton btnAddAddress = new JButton("New Address");
+		JButton btnAddAddress = new JButton("+ New Address");
+		btnAddAddress.setFont(new Font("Poppins", Font.PLAIN, 13));
 		btnAddAddress.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NewAddressUI.showUI(AddAuthorUI.this);
 			}
 		});
-		btnAddAddress.setBounds(453, 348, 117, 29);
+		btnAddAddress.setBounds(438, 333, 139, 40);
 		add(btnAddAddress);
 
 		for(Address a: controller.getAddresses()){
@@ -52,20 +55,22 @@ public class AddAuthorUI extends JPanel {
 		add(cmbAddress);
 
 		JLabel lblNewLabel_1_1 = new JLabel("Last Name");
-		lblNewLabel_1_1.setBounds(27, 159, 126, 16);
+		lblNewLabel_1_1.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblNewLabel_1_1.setBounds(26, 148, 400, 40);
 		add(lblNewLabel_1_1);
 
 		txtFirstName = new JTextField();
-		txtFirstName.setBounds(27, 107, 284, 40);
+		txtFirstName.setBounds(26, 107, 400, 40);
 		add(txtFirstName);
 		txtFirstName.setColumns(10);
 
 		txtLastName = new JTextField();
-		txtLastName.setBounds(27, 181, 284, 40);
+		txtLastName.setBounds(26, 181, 400, 40);
 		add(txtLastName);
 		txtLastName.setColumns(10);
 
-		JButton btnAddAuthor = new JButton("+ Add Author");
+		JButton btnAddAuthor = new JButton("Add Author");
+		btnAddAuthor.setFont(new Font("Poppins", Font.PLAIN, 13));
 		btnAddAuthor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				var msg = controller.addAuthor(txtFirstName.getText(), txtLastName.getText(), txtPhone.getText(), cmbAddress.getSelectedIndex());
@@ -73,20 +78,22 @@ public class AddAuthorUI extends JPanel {
 			}
 		});
 		btnAddAuthor.setBackground(new Color(72, 61, 139));
-		btnAddAuthor.setBounds(27, 445, 148, 40);
+		btnAddAuthor.setBounds(278, 380, 148, 40);
 		add(btnAddAuthor);
 
 		txtPhone = new JTextField();
 		txtPhone.setColumns(10);
-		txtPhone.setBounds(27, 255, 284, 40);
+		txtPhone.setBounds(26, 255, 400, 40);
 		add(txtPhone);
 
 		JLabel lblNewLabel_1_1_1 = new JLabel("Phone");
-		lblNewLabel_1_1_1.setBounds(27, 233, 126, 16);
+		lblNewLabel_1_1_1.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblNewLabel_1_1_1.setBounds(26, 221, 400, 40);
 		add(lblNewLabel_1_1_1);
 
 		JLabel lblPhoneNumber_1 = new JLabel("Address");
-		lblPhoneNumber_1.setBounds(38, 321, 234, 16);
+		lblPhoneNumber_1.setFont(new Font("Poppins", Font.PLAIN, 13));
+		lblPhoneNumber_1.setBounds(26, 297, 400, 40);
 		add(lblPhoneNumber_1);
 
 

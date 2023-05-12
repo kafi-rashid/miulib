@@ -5,10 +5,13 @@ import controller.SystemController;
 import java.awt.EventQueue;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
@@ -49,43 +52,42 @@ public class LoginUI extends JFrame {
     private LoginUI() {
         setBackground(Color.LIGHT_GRAY);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 500);
+        
+        Toolkit toolkit = getToolkit();
+        setBounds((toolkit.getScreenSize().width - getWidth()) / 2, (toolkit.getScreenSize().height - getHeight()) / 2, 1000, 650);
         contentPane = new JPanel();
-        contentPane.setBackground(Color.DARK_GRAY);
+        contentPane.setBackground(Color.WHITE);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JPanel panel = new JPanel();
-        panel.setBackground(Color.WHITE);
-        panel.setBounds(6, 6, 367, 460);
-        contentPane.add(panel);
-        panel.setLayout(null);
-
-        JLabel lblNewLabel_2 = new JLabel("");
-        lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_2.setIcon(new ImageIcon(LoginUI.class.getResource("/ui/imgs/loginBackground.jpg")));
-        lblNewLabel_2.setBounds(0, 0, 361, 460);
-        panel.add(lblNewLabel_2);
-
         JPanel panel_1 = new JPanel();
-        panel_1.setBackground(Color.DARK_GRAY);
-        panel_1.setBounds(385, 6, 409, 460);
+        panel_1.setBackground(Color.WHITE);
+        panel_1.setBounds(589, 35, 386, 510);
         contentPane.add(panel_1);
         panel_1.setLayout(null);
 
         JLabel lblNewLabel = new JLabel("Username");
-        lblNewLabel.setForeground(Color.WHITE);
-        lblNewLabel.setBounds(32, 125, 62, 16);
+        lblNewLabel.setFont(new Font("Poppins", Font.PLAIN, 13));
+        lblNewLabel.setForeground(Color.BLACK);
+        lblNewLabel.setBounds(6, 177, 304, 16);
         panel_1.add(lblNewLabel);
 
         JLabel lblPassword = new JLabel("Password");
-        lblPassword.setForeground(Color.WHITE);
-        lblPassword.setBounds(32, 203, 59, 16);
+        lblPassword.setFont(new Font("Poppins", Font.PLAIN, 13));
+        lblPassword.setForeground(Color.BLACK);
+        lblPassword.setBounds(6, 255, 304, 16);
         panel_1.add(lblPassword);
 
         txtUsername = new JTextField();
+        
+        Border paddingBorder = BorderFactory.createEmptyBorder(5, 10, 5, 10);
+        Border lineBorder = BorderFactory.createLineBorder(Color.GRAY);
+        Border compoundBorder = BorderFactory.createCompoundBorder(lineBorder, paddingBorder);
+        txtUsername.setBorder(compoundBorder);
+
+        txtUsername.setBackground(UIManager.getColor("Button.highlight"));
         txtUsername.addKeyListener(new KeyAdapter() {
         	@Override
         	public void keyPressed(KeyEvent e) {
@@ -94,11 +96,12 @@ public class LoginUI extends JFrame {
                 }
         	}
         });
-        txtUsername.setBounds(22, 141, 368, 44);
+        txtUsername.setBounds(6, 199, 288, 44);
         panel_1.add(txtUsername);
         txtUsername.setColumns(10);
 
         txtPassword = new JPasswordField();
+        txtPassword.setBackground(UIManager.getColor("Button.highlight"));
         txtPassword.addKeyListener(new KeyAdapter() {
         	@Override
         	public void keyPressed(KeyEvent e) {
@@ -107,11 +110,20 @@ public class LoginUI extends JFrame {
                 }
         	}
         });
-        txtPassword.setBounds(22, 219, 371, 44);
+        txtPassword.setBounds(6, 277, 288, 44);
+
+        paddingBorder = BorderFactory.createEmptyBorder(5, 10, 5, 10);
+        lineBorder = BorderFactory.createLineBorder(Color.GRAY);
+        compoundBorder = BorderFactory.createCompoundBorder(lineBorder, paddingBorder);
+        txtPassword.setBorder(compoundBorder);
+        
         panel_1.add(txtPassword);
         txtPassword.setColumns(10);
 
-        JButton btnLogin = new JButton("Login");
+        JButton btnLogin = new JButton("LOG IN");
+        btnLogin.setForeground(Color.BLACK);
+        btnLogin.setBackground(Color.WHITE);
+        btnLogin.setFont(new Font("Poppins", Font.PLAIN, 13));
         btnLogin.addKeyListener(new KeyAdapter() {
         	@Override
         	public void keyPressed(KeyEvent e) {
@@ -125,15 +137,28 @@ public class LoginUI extends JFrame {
                 login();
             }
         });
-        btnLogin.setBounds(264, 388, 126, 44);
+        btnLogin.setBounds(168, 333, 126, 44);
         panel_1.add(btnLogin);
 
-        JLabel lblNewLabel_1 = new JLabel("MPP - LIBRARY SYSTEM");
-        lblNewLabel_1.setForeground(Color.WHITE);
-        lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-        lblNewLabel_1.setBounds(9, 6, 384, 68);
+        JLabel lblNewLabel_1 = new JLabel("Harmony");
+        lblNewLabel_1.setForeground(Color.DARK_GRAY);
+        lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
+        lblNewLabel_1.setFont(new Font("Poppins", Font.PLAIN, 36));
+        lblNewLabel_1.setBounds(6, 49, 175, 68);
         panel_1.add(lblNewLabel_1);
+        
+        JLabel lblNewLabel_1_1 = new JLabel("Lib");
+        lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+        lblNewLabel_1_1.setForeground(new Color(50, 205, 50));
+        lblNewLabel_1_1.setFont(new Font("Poppins", Font.BOLD, 36));
+        lblNewLabel_1_1.setBounds(175, 49, 105, 68);
+        panel_1.add(lblNewLabel_1_1);
+        
+        JLabel lblNewLabel_2 = new JLabel("");
+        lblNewLabel_2.setVerticalAlignment(SwingConstants.BOTTOM);
+        lblNewLabel_2.setIcon(new ImageIcon(LoginUI.class.getResource("/ui/imgs/login.jpg")));
+        lblNewLabel_2.setBounds(107, 41, 449, 466);
+        contentPane.add(lblNewLabel_2);
     }
 
 
