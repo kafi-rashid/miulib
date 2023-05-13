@@ -1,8 +1,12 @@
 package ui;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -10,8 +14,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import controller.SystemController;
 import data.Book;
@@ -31,7 +38,8 @@ public class UpdateBookCopyUI extends JPanel {
     /**
      * Create the panel.
      */
-    public UpdateBookCopyUI() {
+    @SuppressWarnings("serial")
+	public UpdateBookCopyUI() {
         setLayout(null);
 
         JLabel lblNewLabel = new JLabel("Update Copies of Book");
@@ -68,6 +76,17 @@ public class UpdateBookCopyUI extends JPanel {
                 txtAvailableCopies.setText(String.valueOf(selectedBook.getCopyOfBooks()));
 			}
         });
+        tblBookList.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            private final MatteBorder border = new MatteBorder(1, 1, 0, 0, Color.BLACK);
+            private final EmptyBorder emptyBorder = new EmptyBorder(1, 1, 0, 0);
+
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                ((JComponent) cellComponent).setBorder(BorderFactory.createCompoundBorder(border, emptyBorder));
+                return cellComponent;
+            }
+        });
         tblBookList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 //        tblBookList.setBounds(26, 75, 640, 312);
 
@@ -75,7 +94,7 @@ public class UpdateBookCopyUI extends JPanel {
         tblBookList.getTableHeader().setFont(new Font("Poppins", Font.PLAIN, 13));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 75, 640, 429);
+		scrollPane.setBounds(26, 75, 640, 329);
 		add(scrollPane);
 		
 		scrollPane.setViewportView(tblBookList);

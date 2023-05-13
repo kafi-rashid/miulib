@@ -10,15 +10,22 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -31,6 +38,7 @@ public class MemberListUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings("serial")
 	public MemberListUI() {
 		setLayout(null);
 		
@@ -74,6 +82,20 @@ public class MemberListUI extends JPanel {
 		table = new JTable(data, columnNames);
 		table.setFont(new Font("Poppins", Font.PLAIN, 13));
 		table.getTableHeader().setFont(new Font("Poppins", Font.PLAIN, 13));
+
+        
+		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            private final MatteBorder border = new MatteBorder(1, 1, 0, 0, Color.BLACK);
+            private final EmptyBorder emptyBorder = new EmptyBorder(1, 1, 0, 0);
+
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                ((JComponent) cellComponent).setBorder(BorderFactory.createCompoundBorder(border, emptyBorder));
+                return cellComponent;
+            }
+        });
+        
 //		MatteBorder border = new MatteBorder(1, 1, 1, 1, Color.BLACK);
 //		table.setBorder(border);
 		scrollPane.setViewportView(table);

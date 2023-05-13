@@ -8,7 +8,7 @@ public class TestData {
 
     public static List<User> getTestUsers(){
         var tmpUsers = new ArrayList<User>();
-        tmpUsers.add(new User("", "", "Moynul Islam", "1111", UserRoles.Admin));
+        tmpUsers.add(new User("moynul", "123", "Moynul Islam", "1111", UserRoles.Admin));
         tmpUsers.add(new User("reza" ,"123", "Rezaul Karim Khan", "2222", UserRoles.Both));
         tmpUsers.add(new User("kafi" ,"123", "Saidul Islam", "3333", UserRoles.Librarian));
         return tmpUsers;
@@ -16,9 +16,9 @@ public class TestData {
 
     public static List<Address> getAddresses(){
         var tmpAddresses = new ArrayList<Address>();
-        tmpAddresses.add(new Address("1000 n", "4th st", "IA", "52556"));
-        tmpAddresses.add(new Address("100 n", "main st", "IA", "52557"));
-        tmpAddresses.add(new Address("58", "4th st", "Randolph, MA", "02368"));
+        tmpAddresses.add(new Address("1000 N", "4th St", "IA", "52556"));
+        tmpAddresses.add(new Address("100 N", "Main St", "IA", "52557"));
+        tmpAddresses.add(new Address("58", "4th St", "Randolph, MA", "02368"));
         tmpAddresses.add(new Address("7361", "Ann Street", "Mundelein, IL", "60060"));
         tmpAddresses.add(new Address("30", "Orange Street", "Union, NJ", "07083"));
         return tmpAddresses;

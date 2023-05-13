@@ -95,10 +95,10 @@ public class MainUI extends JFrame {
         titlePanel.setLayout(null);
 
         JLabel lblLoginInfo = new JLabel(getLoginDetails());
-        lblLoginInfo.setBounds(18, 47, 261, 20);
+        lblLoginInfo.setBounds(18, 47, 261, 20);        
         titlePanel.add(lblLoginInfo);
-        lblLoginInfo.setForeground(Color.BLACK);
-        lblLoginInfo.setFont(new Font("Poppins", Font.PLAIN, 24));
+        lblLoginInfo.setForeground(new Color(95, 158, 160));
+        lblLoginInfo.setFont(new Font("Poppins", Font.BOLD, 24));
         lblLoginInfo.setHorizontalAlignment(SwingConstants.LEFT);
         
 
@@ -123,6 +123,7 @@ public class MainUI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
             	systemController.logOut();
+            	systemController.reset();
                 hideUI();
 //                LoginUI.showUI();
                 LoginUI.restartUI();

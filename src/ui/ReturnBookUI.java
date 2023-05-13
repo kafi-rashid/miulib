@@ -1,37 +1,44 @@
 package ui;
 
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import controller.SystemController;
-import data.Book;
 import data.CheckoutBooks;
-import data.Member;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
-import javax.swing.JComboBox;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ReturnBookUI extends JPanel {
 
-    private JTable table;
     private JTable tblBookList;
-    SystemController controller = SystemController.getInstance();
-    
-	/**
-	 * Create the panel.
-	 */
+    private SystemController controller = SystemController.getInstance();
+
+    /**
+     * Create the panel.
+     */
+    @SuppressWarnings("serial")
 	public ReturnBookUI() {
-		setLayout(null);
+        setLayout(null);
 
         JLabel lblNewLabel = new JLabel("Return Book");
         lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
@@ -39,6 +46,45 @@ public class ReturnBookUI extends JPanel {
         lblNewLabel.setBounds(26, 20, 400, 40);
         add(lblNewLabel);
 
+        refreshBookList();
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(26, 75, 640, 409);
+        add(scrollPane);
+        tblBookList.setFont(new Font("Poppins", Font.PLAIN, 13));
+        tblBookList.getTableHeader().setFont(new Font("Poppins", Font.PLAIN, 13));
+        tblBookList.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            private final MatteBorder border = new MatteBorder(1, 1, 0, 0, Color.BLACK);
+            private final EmptyBorder emptyBorder = new EmptyBorder(1, 1, 0, 0);
+
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                ((JComponent) cellComponent).setBorder(BorderFactory.createCompoundBorder(border, emptyBorder));
+                return cellComponent;
+            }
+        });
+        scrollPane.setViewportView(tblBookList);
+
+        JButton btnReturnBook = new JButton("Return Book");
+        btnReturnBook.setFont(new Font("Poppins", Font.PLAIN, 13));
+        btnReturnBook.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                var selectedRow = tblBookList.getSelectedRow();
+                if (selectedRow == -1) {
+                    JOptionPane.showMessageDialog(null, "Select a book from the table to return");
+                    return;
+                }
+                controller.returnBook(selectedRow);
+                JOptionPane.showMessageDialog(null, "Book returned successfully");
+                refreshBookList(); // Update the book list after returning a book
+            }
+        });
+        btnReturnBook.setBounds(26, 496, 139, 40);
+        add(btnReturnBook);
+    }
+
+    private void refreshBookList() {
         var books = controller.getCheckoutBooks();
         String[][] data = new String[books.size()][5];
 
@@ -52,31 +98,13 @@ public class ReturnBookUI extends JPanel {
 
             i++;
         }
-        String[] columnNames = {"Book Title", "ISBN", "Author", "Member ID", "Member Name"};
-        tblBookList = new JTable(data, columnNames);
-//        tblBookList.setBounds(26, 75, 640, 362);
-//        add(tblBookList);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 75, 640, 409);
-		add(scrollPane);
-        tblBookList.setFont(new Font("Poppins", Font.PLAIN, 13));
-        tblBookList.getTableHeader().setFont(new Font("Poppins", Font.PLAIN, 13));
-		scrollPane.setViewportView(tblBookList);
-        
-        JButton btnReturnBook = new JButton("Return Book");
-        btnReturnBook.setFont(new Font("Poppins", Font.PLAIN, 13));
-        btnReturnBook.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		var selectedRow = tblBookList.getSelectedRow();
-                if(selectedRow == -1){
-                    JOptionPane.showMessageDialog(null, "Select a book from the table to return");
-                    return;
-                }
-                controller.returnBook(selectedRow);
-        	}
-        });
-        btnReturnBook.setBounds(26, 496, 139, 40);
-        add(btnReturnBook);
-	}
+        String[] columnNames = {"Book Title", "ISBN", "Author", "Member ID", "Member Name"};
+        if (tblBookList != null) {
+            tblBookList.setModel(new javax.swing.table.DefaultTableModel(data, columnNames));
+            tblBookList.repaint();
+        } else {
+            tblBookList = new JTable(data, columnNames);
+        }
+    }
 }

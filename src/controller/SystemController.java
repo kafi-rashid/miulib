@@ -2,6 +2,7 @@ package controller;
 
 import data.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,6 +42,10 @@ public class SystemController {
     }
 
     public void logOut() {
+        loggedInUser = null;
+    }
+    
+    public void reset() {
         loggedInUser = null;
     }
 
@@ -177,5 +182,18 @@ public class SystemController {
         var address = getSelectedAddress(selectedAddressIndex);
         df.addAuthor(new Author(firstName, lastName, phone, address));
         return "Success";
+    }
+
+//    public List<String> getCheckoutHistory(int memberId) {
+//        // Implement the logic to retrieve the checkout history for the specified member ID
+//        // For example, you can return a dummy list with some sample history
+//        List<String> checkoutHistory = List.of("Book 1 - Checked out on 2023-05-10", "Book 2 - Checked out on 2023-05-12");
+//        
+//        return checkoutHistory;
+//    }
+    
+    public List<CheckoutBooks> getCheckoutHistory(int memberId) {
+    	List<CheckoutBooks> checkoutBooks = df.getCheckoutBooks();
+		return checkoutBooks.stream().filter(ch -> ch.member.MemberId == memberId).toList();
     }
 }

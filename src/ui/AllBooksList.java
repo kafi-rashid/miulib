@@ -9,13 +9,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.JTextField;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 public class AllBooksList extends JPanel {
 	private JTable jtblBookList;
@@ -25,6 +31,7 @@ public class AllBooksList extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings("serial")
 	public AllBooksList() {
 		setLayout(null);
 		
@@ -62,6 +69,19 @@ public class AllBooksList extends JPanel {
         tblBookList = new JTable(data, columnNames);
         tblBookList.setFont(new Font("Poppins", Font.PLAIN, 13));
         tblBookList.getTableHeader().setFont(new Font("Poppins", Font.PLAIN, 13));
+        
+        tblBookList.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            private final MatteBorder border = new MatteBorder(1, 1, 0, 0, Color.BLACK);
+            private final EmptyBorder emptyBorder = new EmptyBorder(1, 1, 0, 0);
+
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                ((JComponent) cellComponent).setBorder(BorderFactory.createCompoundBorder(border, emptyBorder));
+                return cellComponent;
+            }
+        });
+        
 //		MatteBorder border = new MatteBorder(1, 1, 1, 1, Color.BLACK);
 //		tblBookList.setBorder(border);
 		scrollPane.setViewportView(tblBookList);
