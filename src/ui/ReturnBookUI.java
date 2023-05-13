@@ -27,6 +27,7 @@ import javax.swing.JComponent;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 public class ReturnBookUI extends JPanel {
 
@@ -61,6 +62,15 @@ public class ReturnBookUI extends JPanel {
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 ((JComponent) cellComponent).setBorder(BorderFactory.createCompoundBorder(border, emptyBorder));
+
+                // Check if the book is overdue
+                boolean isOverdue = controller.isBookOverdue(row);
+                if (isOverdue) {
+//                    cellComponent.setForeground(Color.RED);
+                } else {
+                    cellComponent.setBackground(table.getBackground());
+                }
+
                 return cellComponent;
             }
         });
@@ -83,10 +93,15 @@ public class ReturnBookUI extends JPanel {
         btnReturnBook.setBounds(26, 496, 139, 40);
         add(btnReturnBook);
     }
+    
+    public boolean isOverdue(LocalDate dueDate) {
+        LocalDate currentDate = LocalDate.now();
+        return currentDate.isAfter(dueDate);
+    }
 
     private void refreshBookList() {
         var books = controller.getCheckoutBooks();
-        String[][] data = new String[books.size()][5];
+        String[][] data = new String[books.size()][8];
 
         var i = 0;
         for (CheckoutBooks checkout : books) {
@@ -95,11 +110,13 @@ public class ReturnBookUI extends JPanel {
             data[i][2] = checkout.book.author.toString();
             data[i][3] = String.valueOf(checkout.member.MemberId);
             data[i][4] = checkout.member.toString();
-
+            data[i][5] = checkout.checkoutDate.toString();
+            data[i][6] = checkout.dueDate.toString();
+            data[i][7] = isOverdue(checkout.dueDate) ? "Yes" : "No";
             i++;
         }
 
-        String[] columnNames = {"Book Title", "ISBN", "Author", "Member ID", "Member Name"};
+        String[] columnNames = {"Book Title", "ISBN", "Author", "Mem ID", "Name", "Checkout", "Due", "Is Overdue"};
         if (tblBookList != null) {
             tblBookList.setModel(new javax.swing.table.DefaultTableModel(data, columnNames));
             tblBookList.repaint();

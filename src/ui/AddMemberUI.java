@@ -87,12 +87,30 @@ public class AddMemberUI extends JPanel {
 
 		JButton btnAddMember = new JButton("Add Member");
 		btnAddMember.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				systemController.addMember(txtFirstName.getText(), txtLastName.getText(), txtPhone.getText(), cmbAddress.getSelectedIndex());
-				JOptionPane.showMessageDialog(null, "Successfully added", "Success", JOptionPane.PLAIN_MESSAGE);
-				MainUI.LoadUI(new AddMemberUI());
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        String firstName = txtFirstName.getText().trim();
+		        String lastName = txtLastName.getText().trim();
+		        String phone = txtPhone.getText().trim();
+		        int addressIndex = cmbAddress.getSelectedIndex();
+
+		        // Validate the fields
+		        if (firstName.isEmpty() || lastName.isEmpty() || phone.isEmpty()) {
+		            JOptionPane.showMessageDialog(null, "Please fill in all fields", "Error", JOptionPane.ERROR_MESSAGE);
+		        } else if (!phone.matches("\\d+")) {
+		            JOptionPane.showMessageDialog(null, "Phone number should contain digits only", "Error", JOptionPane.ERROR_MESSAGE);
+		        } else {
+		            systemController.addMember(firstName, lastName, phone, addressIndex);
+		            JOptionPane.showMessageDialog(null, "Successfully added", "Success", JOptionPane.PLAIN_MESSAGE);
+
+		            // Clear the fields
+		            txtFirstName.setText("");
+		            txtLastName.setText("");
+		            txtPhone.setText("");
+		            cmbAddress.setSelectedIndex(0);
+		        }
+		    }
 		});
+
 		btnAddMember.setBounds(280, 387, 141, 40);
 		add(btnAddMember);
 

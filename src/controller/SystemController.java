@@ -2,6 +2,7 @@ package controller;
 
 import data.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,8 +23,6 @@ public class SystemController {
     private SystemController(){
 
     }
-
-
 
     public User Login(String txtUsername, String txtPassword) {
         // get all users
@@ -109,6 +108,17 @@ public class SystemController {
         }
     }
 
+    public boolean isBookOverdue(int index) {
+        if (index >= 0 && index < df.getCheckoutBooks().size()) {
+            CheckoutBooks checkout = df.getCheckoutBooks().get(index);
+            LocalDate dueDate = checkout.dueDate;
+            LocalDate currentDate = LocalDate.now();
+            System.out.println(dueDate + ", " + currentDate);
+            return currentDate.isAfter(dueDate);
+        }
+        return false;
+    }
+    
     public int getAddressIndex(Address address) {
         var addresses = df.getAddresses();
         var index = 0;

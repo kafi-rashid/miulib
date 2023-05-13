@@ -72,11 +72,34 @@ public class AddAuthorUI extends JPanel {
 		JButton btnAddAuthor = new JButton("Add Author");
 		btnAddAuthor.setFont(new Font("Poppins", Font.PLAIN, 13));
 		btnAddAuthor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				var msg = controller.addAuthor(txtFirstName.getText(), txtLastName.getText(), txtPhone.getText(), cmbAddress.getSelectedIndex());
-				JOptionPane.showMessageDialog(null, msg);
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        String firstName = txtFirstName.getText().trim();
+		        String lastName = txtLastName.getText().trim();
+		        String phone = txtPhone.getText().trim();
+		        int addressIndex = cmbAddress.getSelectedIndex();
+
+		        // Validate the fields
+		        if (firstName.isEmpty() || lastName.isEmpty() || phone.isEmpty()) {
+		            JOptionPane.showMessageDialog(null, "Please fill in all fields", "Error", JOptionPane.ERROR_MESSAGE);
+		        } else {
+		            // Additional validation for the phone field
+		            if (!phone.matches("\\d+")) {
+		                JOptionPane.showMessageDialog(null, "Phone should contain digits only", "Error", JOptionPane.ERROR_MESSAGE);
+		                return; // Stop further execution if phone validation fails
+		            }
+
+		            var msg = controller.addAuthor(firstName, lastName, phone, addressIndex);
+		            JOptionPane.showMessageDialog(null, msg);
+
+		            // Clear the fields
+		            txtFirstName.setText("");
+		            txtLastName.setText("");
+		            txtPhone.setText("");
+		            cmbAddress.setSelectedIndex(0);
+		        }
+		    }
 		});
+
 		btnAddAuthor.setBackground(new Color(72, 61, 139));
 		btnAddAuthor.setBounds(278, 380, 148, 40);
 		add(btnAddAuthor);
