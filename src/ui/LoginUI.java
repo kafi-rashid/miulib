@@ -52,9 +52,7 @@ public class LoginUI extends JFrame {
     private LoginUI() {
         setBackground(Color.LIGHT_GRAY);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        Toolkit toolkit = getToolkit();
-        setBounds((toolkit.getScreenSize().width - getWidth()) / 2, (toolkit.getScreenSize().height - getHeight()) / 2, 1000, 650);
+        setBounds(100, 100, 1000, 650);
         contentPane = new JPanel();
         contentPane.setBackground(Color.WHITE);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -81,6 +79,7 @@ public class LoginUI extends JFrame {
         panel_1.add(lblPassword);
 
         txtUsername = new JTextField();
+        txtUsername.setFont(new Font("Poppins", Font.PLAIN, 13));
         
         Border paddingBorder = BorderFactory.createEmptyBorder(5, 10, 5, 10);
         Border lineBorder = BorderFactory.createLineBorder(Color.GRAY);
@@ -101,6 +100,7 @@ public class LoginUI extends JFrame {
         txtUsername.setColumns(10);
 
         txtPassword = new JPasswordField();
+        txtPassword.setFont(new Font("Poppins", Font.PLAIN, 13));
         txtPassword.setBackground(UIManager.getColor("Button.highlight"));
         txtPassword.addKeyListener(new KeyAdapter() {
         	@Override
@@ -177,4 +177,18 @@ public class LoginUI extends JFrame {
     private void hideUI() {
         frame.setVisible(false);
     }
+
+	public static void restartUI() {
+	    EventQueue.invokeLater(new Runnable() {
+	        public void run() {
+	            try {
+	                frame.dispose(); // Dispose the existing frame
+	                frame = new LoginUI(); // Recreate the LoginUI frame
+	                frame.setVisible(true); // Make the frame visible
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    });
+	}
 }

@@ -3,6 +3,7 @@ package ui;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -50,9 +51,15 @@ public class CheckoutBookListUI extends JPanel {
         tblBookList = new JTable(data, columnNames);
         tblBookList.setFillsViewportHeight(true);
         tblBookList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tblBookList.setBounds(26, 75, 640, 431);
+//        tblBookList.setBounds(26, 75, 640, 431);
 
-        add(tblBookList);
 
+        tblBookList.setFont(new Font("Poppins", Font.PLAIN, 13));
+        tblBookList.getTableHeader().setFont(new Font("Poppins", Font.PLAIN, 13));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(26, 75, 640, 431);
+		add(scrollPane);
+		
     }
 }

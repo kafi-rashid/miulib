@@ -27,7 +27,7 @@ public class AddMemberUI extends JPanel {
 		setLayout(null);
 
 		txtFirstName = new JTextField();
-		txtFirstName.setBounds(26, 115, 402, 37);
+		txtFirstName.setBounds(26, 115, 402, 40);
 		add(txtFirstName);
 		txtFirstName.setColumns(10);
 

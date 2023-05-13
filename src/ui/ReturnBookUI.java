@@ -1,6 +1,7 @@
 package ui;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -53,9 +54,15 @@ public class ReturnBookUI extends JPanel {
         }
         String[] columnNames = {"Book Title", "ISBN", "Author", "Member ID", "Member Name"};
         tblBookList = new JTable(data, columnNames);
-        tblBookList.setBounds(26, 75, 640, 362);
+//        tblBookList.setBounds(26, 75, 640, 362);
+//        add(tblBookList);
 
-        add(tblBookList);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(26, 75, 640, 409);
+		add(scrollPane);
+        tblBookList.setFont(new Font("Poppins", Font.PLAIN, 13));
+        tblBookList.getTableHeader().setFont(new Font("Poppins", Font.PLAIN, 13));
+		scrollPane.setViewportView(tblBookList);
         
         JButton btnReturnBook = new JButton("Return Book");
         btnReturnBook.setFont(new Font("Poppins", Font.PLAIN, 13));
@@ -69,7 +76,7 @@ public class ReturnBookUI extends JPanel {
                 controller.returnBook(selectedRow);
         	}
         });
-        btnReturnBook.setBounds(26, 458, 139, 40);
+        btnReturnBook.setBounds(26, 496, 139, 40);
         add(btnReturnBook);
 	}
 }

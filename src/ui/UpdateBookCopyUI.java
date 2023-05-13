@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -68,9 +69,16 @@ public class UpdateBookCopyUI extends JPanel {
 			}
         });
         tblBookList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tblBookList.setBounds(26, 75, 640, 312);
+//        tblBookList.setBounds(26, 75, 640, 312);
 
-        add(tblBookList);
+        tblBookList.setFont(new Font("Poppins", Font.PLAIN, 13));
+        tblBookList.getTableHeader().setFont(new Font("Poppins", Font.PLAIN, 13));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(26, 75, 640, 429);
+		add(scrollPane);
+		
+		scrollPane.setViewportView(tblBookList);
         
         txtAvailableCopies = new JTextField();
         txtAvailableCopies.setFont(new Font("Poppins", Font.PLAIN, 13));

@@ -52,7 +52,7 @@ public class MemberListUI extends JPanel {
 		add(btnAddMember);
 					
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(27, 79, 640, 429);
+		scrollPane.setBounds(26, 75, 640, 429);
 		add(scrollPane);
 		
 
@@ -72,11 +72,10 @@ public class MemberListUI extends JPanel {
 
         String[] columnNames = { "Member ID", "First Name", "Last Name", "Phone #" };
 		table = new JTable(data, columnNames);
-		table.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
-		table.getTableHeader().setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		MatteBorder border = new MatteBorder(1, 1, 1, 1, Color.BLACK);
-		table.setBorder(border);
+		table.setFont(new Font("Poppins", Font.PLAIN, 13));
+		table.getTableHeader().setFont(new Font("Poppins", Font.PLAIN, 13));
+//		MatteBorder border = new MatteBorder(1, 1, 1, 1, Color.BLACK);
+//		table.setBorder(border);
 		scrollPane.setViewportView(table);
-
 	}
 }

@@ -18,6 +18,7 @@ import java.awt.SystemColor;
 import java.awt.CardLayout;
 import java.awt.BorderLayout;
 import java.awt.event.WindowEvent;
+import java.awt.Component;
 
 public class MainUI extends JFrame {
 
@@ -41,6 +42,7 @@ public class MainUI extends JFrame {
 //    private JButton btnLogOut;
     private JLabel btnLogOut;
     private JLabel lblNewLabel;
+    private JLabel lblNewLabel_1;
 
     public static void showUI() {
         if (MainUI.frame == null) {
@@ -73,10 +75,17 @@ public class MainUI extends JFrame {
         contentPane.add(panel);
 
         loader = new JPanel();
-        loader.setBackground(UIManager.getColor("Button.disabledText"));
+        loader.setBackground(Color.WHITE);
         loader.setBounds(303, 6, 691, 580);
         contentPane.add(loader);
         loader.setLayout(new BoxLayout(loader, BoxLayout.X_AXIS));
+        
+        lblNewLabel_1 = new JLabel("");
+        lblNewLabel_1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lblNewLabel_1.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+        lblNewLabel_1.setVerticalAlignment(SwingConstants.BOTTOM);
+        lblNewLabel_1.setIcon(new ImageIcon(MainUI.class.getResource("/ui/imgs/home.jpg")));
+        loader.add(lblNewLabel_1);
         panel.setLayout(null);
 
         titlePanel = new JPanel();
@@ -115,7 +124,8 @@ public class MainUI extends JFrame {
             public void mouseClicked(MouseEvent e) {
             	systemController.logOut();
                 hideUI();
-                LoginUI.showUI();
+//                LoginUI.showUI();
+                LoginUI.restartUI();
             }
         });
         
